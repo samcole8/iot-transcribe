@@ -1,0 +1,57 @@
+<!--Courtesy of ChatGPT-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time Transcription</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        #transcripts {
+            margin-top: 20px;
+        }
+
+        .transcript {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #f4f4f4;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Real-Time Transcription</h1>
+    <div id="transcripts">
+        {% for transcript in transcripts %}
+        <div class="transcript">{{ transcript }}</div>
+        {% endfor %}
+    </div>
+
+    <script>
+        function fetchTranscripts() {
+            fetch("/get_transcripts")
+                .then(response => response.json())
+                .then(data => {
+                    const transcriptsContainer = document.getElementById("transcripts");
+                    transcriptsContainer.innerHTML = "";
+                    data.transcripts.forEach(transcript => {
+                        const transcriptDiv = document.createElement("div");
+                        transcriptDiv.classList.add("transcript");
+                        transcriptDiv.innerText = transcript;
+                        transcriptsContainer.appendChild(transcriptDiv);
+                    });
+                })
+                .catch(error => console.error("Error fetching transcripts:", error));
+        }
+
+        setInterval(fetchTranscripts, 3000);
+    </script>
+</body>
+
+</html>
