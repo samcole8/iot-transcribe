@@ -1,0 +1,4 @@
+amazon-transcribe==0.6.2
+python-dotenv==1.0.1
+sounddevice==0.5.1
+requests
