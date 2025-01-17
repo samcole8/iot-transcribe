@@ -4,4 +4,4 @@ gunicorn
 eventlet
 openai
 markdown
-pydotenv
+python-dotenv==1.0.1

@@ -1,7 +1,8 @@
 from flask import Flask, render_template, request, jsonify
 from openai import OpenAI
-import dotenv
+from dotenv import load_dotenv
 import markdown
+import os
 
 load_dotenv()
 
